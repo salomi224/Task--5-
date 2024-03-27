@@ -1,0 +1,54 @@
+import random
+
+# Quiz questions and answers
+quiz_questions = {
+    "What is the capital of France?": "Paris",
+    "Who painted the Mona Lisa?": "Leonardo da Vinci",
+    "What is the chemical symbol for water?": "H2O",
+    "What is the largest planet in our solar system?": "Jupiter",
+    "What is the powerhouse of the cell?": "Mitochondria"
+}
+
+def present_question(question):
+    print(question)
+    user_answer = input("Your answer: ").strip().lower()
+    return user_answer
+
+def evaluate_answer(question, user_answer):
+    correct_answer = quiz_questions[question].lower()
+    if user_answer == correct_answer:
+        print("Correct!")
+        return 1
+    else:
+        print("Incorrect. The correct answer is:", correct_answer)
+        return 0
+
+def play_quiz():
+    print("Welcome to the Quiz Game!")
+    print("You will be asked multiple-choice questions.")
+    print("Let's get started!\n")
+
+    questions = list(quiz_questions.keys())
+    random.shuffle(questions)  # Shuffle questions for variety
+
+    total_questions = len(questions)
+    score = 0
+
+    for i, question in enumerate(questions, 1):
+        print(f"Question {i}/{total_questions}:")
+        user_answer = present_question(question)
+        score += evaluate_answer(question, user_answer)
+        print()  # Add a blank line for clarity
+
+    print("Quiz complete!")
+    print(f"Your final score is: {score}/{total_questions}")
+
+    play_again = input("Do you want to play again? (yes/no): ").strip().lower()
+    if play_again == "yes":
+        play_quiz()
+    else:
+        print("Thank you for playing!")
+
+if __name__ == "__main__":
+    play_quiz()
+```
